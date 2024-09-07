@@ -1,46 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<malloc.h>
+#include"singly.h"
 
-struct node
-{
-    int info;
-    struct node *next;
-};
-
-struct node *create(struct node *head)
-{
-    int n,count;
-    struct node * last,*newnode;
-    printf("how many nodes :");
-    scanf("%d",&n);
-    last =head;
-    for ( count = 0;count<=n; count++)
-    {
-        newnode=(struct node *) malloc(sizeof(struct node));
-        newnode->next=NULL;
-        printf("\nEnter the node data:");
-        scanf("%d",&newnode->info);
-        last->next=newnode;
-        last = newnode;
-    }
-
-    return (head);
-    
-}
-
-void display(struct node *head){
-  struct node *temp =NULL;
-  temp=head->next;
-
-  do
-  {
-    printf("%d\t",temp->info);
-    temp=temp->next;
-  } while (temp!=NULL);
-  
-    
-}
 
 void main(){
 
@@ -48,13 +10,13 @@ void main(){
     struct node *createlist();
     void display();
 
-    int ch,q=0;
+    int ch,q=0,c,pos;
     head=(struct node *)malloc (sizeof(struct node));
     head->next=NULL;
 
     do
     {
-        printf("\n1.create\n2.Display\n3.exit");
+        printf("\n1.create\n2.Display\n3.Delete\n4.Count\n5.Exit");
         scanf("%d",&ch);
 
         switch (ch)
@@ -68,6 +30,18 @@ void main(){
             break;
 
         case 3:
+               head=delete(head);
+               break;
+
+        case 4:
+               c=count(head);
+               printf("The Totall nodes are:%d",c); 
+               break;   
+
+
+
+
+        case 5:
                q=1;
                break;
         }
